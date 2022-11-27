@@ -1,0 +1,19 @@
+<script>
+navigator.geolocation.getCurrentPosition((pos) => {
+  document.querySelector("#auto_location_point_x").value =
+    `${pos.coords.latitude}`;
+});
+navigator.geolocation.getCurrentPosition((pos) => {
+  document.querySelector("#auto_location_point_y").value =
+    `${pos.coords.longitude}`;
+});
+</script>
+
+<%= form_with(model: auto, url: autos_verificarDejar_path(auto)) do |f| %> 
+   
+  <%= f.hidden_field :location_point_x %>
+  <%= f.hidden_field :location_point_y %>
+  <%= f.hidden_field :id %>
+
+  <%= f.submit 'dejar el auto', class: "btn btn-light"  %> 
+<% end %>
