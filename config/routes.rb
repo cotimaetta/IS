@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reportes
   get 'historial_usos/agregarHoras'
   resources :historial_usos
   get 'usuarios/show'

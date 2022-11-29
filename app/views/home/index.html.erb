@@ -20,6 +20,7 @@
         <% if current_user.supervisor? %>
             <%= link_to "Usuarios", supervisors_path%>
             <%= link_to "Autos", autos_path%>
+            <%= link_to "Reportes", new_reporte_path%>
         <%end%>
 
         <% if current_user.usuario? %>
