@@ -1,0 +1,27 @@
+<%= form_with(model: reporte, url: reportes_savepre_path() do |form| %> 
+  <% if reporte.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(reporte.errors.count, "error") %> prohibited this reporte from being saved:</h2>
+
+      <ul>
+        <% reporte.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :descripcion, style: "display: block" %>
+    <%= form.text_area :descripcion %>
+  </div>
+
+  <div>
+    <%= form.label :foto, style: "display: block" %>
+    <%= form.file_field :foto , accept: 'image/png,image/jpeg' %>
+  </div>  
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

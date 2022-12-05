@@ -79,12 +79,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_164929) do
     t.text "descripcion"
     t.datetime "fecha"
     t.integer "auto_id", null: false
-    t.integer "super_id", null: false
     t.integer "user_id", null: false
+    t.integer "tipo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["auto_id"], name: "index_reportes_on_auto_id"
-    t.index ["super_id"], name: "index_reportes_on_super_id"
     t.index ["user_id"], name: "index_reportes_on_user_id"
   end
 
@@ -115,5 +114,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_164929) do
   add_foreign_key "historial_usos", "users"
   add_foreign_key "reportes", "autos"
   add_foreign_key "reportes", "users"
-  add_foreign_key "reportes", "users", column: "super_id"
 end

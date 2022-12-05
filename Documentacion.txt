@@ -39,6 +39,15 @@ Tipo usuario -- rol
               1 super
               2 user
 
+Tipo reporte -- tipo
+              0 accidente
+              1 grave
+              2 leve
+              3 previo
+              
+
+
+
 -----------------------------------------------------------------------
 
 <%= image_submit_tag('Logo_1.png')%>

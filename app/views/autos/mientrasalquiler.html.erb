@@ -32,6 +32,9 @@ div{
             <% end %>
             <% if @auto.desbloqueado == false %>
                 <%= link_to "Desbloquear auto" , autos_desbloquear_path(:id => @auto.id), class: "btn btn-light" %>
+                <% if ! @reporto %>
+                    <%= link_to "Reporte", reportes_pre_path(), class: "btn btn-light" %>
+                <%end%>
             <%else %>
                 <div>
                 <% if @horasRestantes > 0 %> 

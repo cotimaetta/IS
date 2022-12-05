@@ -22,6 +22,27 @@ class ReportesController < ApplicationController
   # POST /reportes or /reportes.json
   def create
     @reporte = Reporte.new(reporte_params)
+    @reporte.user_id = current_user.id
+    @reporte.auto_id = HistorialUso.where(user_id: @reporte.user_id).last
+    @reporte.fecha = datetime.now
+
+    respond_to do |format|
+      if @reporte.save
+        format.html { redirect_to reporte_url(@reporte), notice: "Reporte was successfully created." }
+        format.json { render :show, status: :created, location: @reporte }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @reporte.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def savepre
+    @reporte = Reporte.new()
+    @reporte.user_id = current_user.id
+    @reporte.auto_id = HistorialUso.where(user_id: @reporte.user_id).last
+    @reporte.tipo = 'previo'
+    @reporte.fecha = DateTime.now
 
     respond_to do |format|
       if @reporte.save
@@ -65,6 +86,6 @@ class ReportesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reporte_params
-      params.require(:reporte).permit(:descripcion, :fecha, :auto_id)
+      params.require(:reporte).permit(:descripcion, :foto, :fecha, :auto_id, :tipo)
     end
 end

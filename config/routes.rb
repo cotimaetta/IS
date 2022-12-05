@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :reportes
+  
+  get 'reportes/pre'
+  get 'reportes/savepre'
+  patch 'reportes/savepre'
+
   get 'historial_usos/agregarHoras'
   resources :historial_usos
   get 'usuarios/show'
@@ -31,6 +35,7 @@ Rails.application.routes.draw do
 
 
   resources :supervisors, only:[:create, :index, :new, :show, :validar, :desaprobar]
+  resources :reportes, only:[:create, :index, :new, :show, :pre, :savepre]
   resources :fotousers, only:[:create, :index, :new, :show, :modificar, :modificardos, :edit, :editdos]
   resources :autos, only:[:create, :index, :new, :show, :alquilar, :verificarDejar, :dejar, :update, :mostrardocumentacion, :mientrasalquiler, :desbloquear]
   devise_for :users, :controllers => { registrations: 'registrations'}
@@ -40,6 +45,10 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   #get "/bienvenida", to: "home#index"
+
+  get "reportes/pre"          => "reportes#pre"
+  post "reportes/savepre"     => "reportes#savepre"
+  get "reportes/savepre"      => "reportes#savepre"
 
   patch "autos/verificarDejar"     => "autos#verificarDejar"
   get "autos/verificarDejar"     => "autos#verificarDejar"

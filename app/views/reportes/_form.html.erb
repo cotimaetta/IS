@@ -17,19 +17,15 @@
   </div>
 
   <div>
-    <%= form.label :fecha, style: "display: block" %>
-    <%= form.datetime_field :fecha %>
+    <%= form.label :foto, style: "display: block" %>
+    <%= form.file_field :foto , accept: 'image/png,image/jpeg' %>
   </div>
 
   <div>
-    <%= form.label :auto_id, style: "display: block" %>
-    <%= form.select :auto_id, options_for_select(Auto.all.map{|s|[s.patente, s.id]}) %>
+    <%= form.label :tipo_de_reporte, style: "display: block" %>
+    <%= form.select :tipo, options_for_select([['Accidente', 'accidente'], ['Grave', 'grave'], ['Leve', 'leve']]) %>
   </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.select :user_id, options_for_select(User.where(rol: 2).map{|s|[s.dni, s.id]}) %>
-  </div>
+  
 
   <div>
     <%= form.submit %>
