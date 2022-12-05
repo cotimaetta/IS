@@ -23,7 +23,7 @@ class ReportesController < ApplicationController
   def create
     @reporte = Reporte.new(reporte_params)
     @reporte.user_id = current_user.id
-    @reporte.auto_id = HistorialUso.where(user_id: @reporte.user_id).last
+    @reporte.auto_id = HistorialUso.where(user_id: @reporte.user_id).last.auto_id
     @reporte.fecha = DateTime.now
 
     respond_to do |format|
@@ -39,13 +39,13 @@ class ReportesController < ApplicationController
 
   def generarpre
     @reporte = Reporte.new(reporte_params)
-    @reporte.auto_id = 4
     @reporte.user_id = params[:id]
+    @reporte.auto_id = HistorialUso.where(user_id: @reporte.user_id).last.auto_id
     @reporte.fecha = DateTime.now
 
     respond_to do |format|
       if @reporte.save
-        format.html { redirect_to reporte_url(@reporte), notice: "Reporte was successfully created." }
+        format.html { redirect_to autos_mientrasalquiler_path(:id => @reporte.auto_id), notice: "Reporte was successfully created." }
         format.json { render :show, status: :created, location: @reporte }
       else
         format.html { render :pre, status: :unprocessable_entity }
