@@ -33,7 +33,7 @@ div{
             <% if @auto.desbloqueado == false %>
                 <%= link_to "Desbloquear auto" , autos_desbloquear_path(:id => @auto.id), class: "btn btn-light" %>
                 <% if ! @reporto %>
-                    <%= link_to "Reporte", reportes_pre_path(), class: "btn btn-light" %>
+                    <%= link_to "Reporte Previo", reportes_pre_path(), class: "btn btn-light" %>
                 <%end%>
             <%else %>
                 <div>
@@ -47,6 +47,7 @@ div{
                 <div>
                 <%= link_to "Agregar horas de alquiler", historial_usos_agregarHoras_path(), class: "btn btn-light"   %>
                 <%= link_to "Ver seguro del auto" , autos_mostrardocumentacion_path(:id => @auto.id), class: "btn btn-light"    %>
+                <%= link_to "Reportes", new_reporte_path, class: "btn btn-light" %>
                 </div>
                 <div><%= link_to "Dejar auto" , autos_dejar_path(:id_auto => @auto.id), class: "btn btn-light"  %></div>
             <% end %>

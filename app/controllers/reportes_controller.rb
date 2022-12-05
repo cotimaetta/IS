@@ -28,7 +28,7 @@ class ReportesController < ApplicationController
 
     respond_to do |format|
       if @reporte.save
-        format.html { redirect_to reporte_url(@reporte), notice: "Reporte was successfully created." }
+        format.html { redirect_to autos_mientrasalquiler_path(:id => @reporte.auto_id), notice: "Reporte was successfully created." }
         format.json { render :show, status: :created, location: @reporte }
       else
         format.html { render :new, status: :unprocessable_entity }
