@@ -24,24 +24,6 @@ class ReportesController < ApplicationController
     @reporte = Reporte.new(reporte_params)
     @reporte.user_id = current_user.id
     @reporte.auto_id = HistorialUso.where(user_id: @reporte.user_id).last
-    @reporte.fecha = datetime.now
-
-    respond_to do |format|
-      if @reporte.save
-        format.html { redirect_to reporte_url(@reporte), notice: "Reporte was successfully created." }
-        format.json { render :show, status: :created, location: @reporte }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @reporte.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def savepre
-    @reporte = Reporte.new()
-    @reporte.user_id = current_user.id
-    @reporte.auto_id = HistorialUso.where(user_id: @reporte.user_id).last
-    @reporte.tipo = 'previo'
     @reporte.fecha = DateTime.now
 
     respond_to do |format|
@@ -55,6 +37,29 @@ class ReportesController < ApplicationController
     end
   end
 
+  def generarpre
+    @reporte = Reporte.new(reporte_params)
+    @reporte.auto_id = 4
+    @reporte.user_id = params[:id]
+    @reporte.fecha = DateTime.now
+
+    respond_to do |format|
+      if @reporte.save
+        format.html { redirect_to reporte_url(@reporte), notice: "Reporte was successfully created." }
+        format.json { render :show, status: :created, location: @reporte }
+      else
+        format.html { render :pre, status: :unprocessable_entity }
+        format.json { render json: @reporte.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+  def pre
+    @reporte = Reporte.new()
+    @reporte.auto_id = HistorialUso.where(user_id: @reporte.user_id).last
+  end
+ 
   # PATCH/PUT /reportes/1 or /reportes/1.json
   def update
     respond_to do |format|
