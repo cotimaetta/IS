@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_164929) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_225315) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -75,6 +75,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_164929) do
     t.index ["user_id"], name: "index_historial_usos_on_user_id"
   end
 
+  create_table "multa", force: :cascade do |t|
+    t.text "descripcion"
+    t.date "fecha"
+    t.integer "auto_id", null: false
+    t.integer "super_id", null: false
+    t.integer "HistorialUso_id", null: false
+    t.float "monto"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["HistorialUso_id"], name: "index_multa_on_HistorialUso_id"
+    t.index ["auto_id"], name: "index_multa_on_auto_id"
+    t.index ["super_id"], name: "index_multa_on_super_id"
+  end
+
   create_table "reportes", force: :cascade do |t|
     t.text "descripcion"
     t.datetime "fecha"
@@ -112,6 +126,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_164929) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "historial_usos", "autos"
   add_foreign_key "historial_usos", "users"
+  add_foreign_key "multa", "HistorialUsos"
+  add_foreign_key "multa", "autos"
+  add_foreign_key "multa", "users", column: "super_id"
   add_foreign_key "reportes", "autos"
   add_foreign_key "reportes", "users"
 end

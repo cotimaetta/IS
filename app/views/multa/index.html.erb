@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Multa</h1>
+
+<div id="multa">
+  <% @multa.each do |multum| %>
+    <%= render multum %>
+    <p>
+      <%= link_to "Show this multum", multum %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New multum", new_multum_path %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :multa
 
   get 'reportes/pre'
   post 'reportes/generarpre'

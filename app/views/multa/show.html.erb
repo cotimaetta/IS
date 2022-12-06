@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @multum %>
+
+<div>
+  <%= link_to "Edit this multum", edit_multum_path(@multum) %> |
+  <%= link_to "Back to multa", multa_path %>
+
+  <%= button_to "Destroy this multum", @multum, method: :delete %>
+</div>
