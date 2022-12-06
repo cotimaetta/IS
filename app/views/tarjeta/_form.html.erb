@@ -1,0 +1,37 @@
+<%= form_with(model: tarjetum) do |form| %>
+  <% if tarjetum.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tarjetum.errors.count, "error") %> prohibited this tarjetum from being saved:</h2>
+
+      <ul>
+        <% tarjetum.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :numero_de_tarjeta, style: "display: block" %>
+    <%= form.number_field :numero %>
+  </div>
+
+  <div>
+    <%= form.label :fecha_ven, style: "display: block" %>
+    <%= form.date_field :fecha_ven %>
+  </div>
+
+  <div>
+    <%= form.label :nombre_titular, style: "display: block" %>
+    <%= form.text_field :nombre_titular %>
+  </div>
+
+  <div>
+    <%= form.label :contraseña, style: "display: block" %>
+    <%= form.password_field :contras, maxlength:3 %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

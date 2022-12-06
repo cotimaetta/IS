@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tarjeta
   resources :multa
 
   get 'reportes/pre'
