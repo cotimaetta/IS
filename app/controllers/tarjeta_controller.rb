@@ -24,13 +24,17 @@ class TarjetaController < ApplicationController
     @tarjetum = Tarjetum.new(tarjetum_params)
     @tarjetum.user_id = current_user.id
     @tarjetum.monto = 20000
-    respond_to do |format|
-      if @tarjetum.save
-        format.html { redirect_to root_path, notice: "Tarjeta asociada con exito" }
-        format.json { render :show, status: :created, location: @tarjetum }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @tarjetum.errors, status: :unprocessable_entity }
+    if @tarjetum.numero == 1234222212342222
+      redirect_to new_tarjetum_path,alert:"Tarjeta invalida. Ingrese los datos nuevamente"
+    else
+      respond_to do |format|
+        if @tarjetum.save
+          format.html { redirect_to root_path, notice: "Tarjeta asociada con exito" }
+          format.json { render :show, status: :created, location: @tarjetum }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @tarjetum.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
