@@ -49,11 +49,14 @@
  
 <% if user_signed_in? %>
 
-        
-
-
-      <table >
-      <h1>Historial usos</h1>
+<div class="container mt-3">
+        <div class="d-flex justify-content-end p-2 point-form">
+            <%= form_tag historial_usos_path , method: :get do %>
+            <%= text_field_tag :patente, params[:patente] %>
+            <%= submit_tag "Buscar", patente: nil %>
+            <% end %>
+        </div>
+        <table>
                 <tr>
                     <th> Patente del Auto </th>
                     <th> Modelo </th>
@@ -64,9 +67,8 @@
                     <th>Monto </th>
                 </tr>   
 
-      
             <% @historial_usos.each do |hu| %>
-                  <tr>
+                <<tr>
                             <td><%= hu.auto.patente %></td>
                             <td><%= hu.auto.modelo %></td>
                             <td><%= hu.user.nombre %></td>
@@ -74,9 +76,16 @@
                             <td><%= hu.cantHoras %> horas </td>
                             <td><%= hu.horasExtra %></td>
                             <td>$<%= hu.monto %></td>
-                  </tr>
+                </tr>
             <% end %>
-       </table>  
+        </table>
+</div>
+ 
+
+
+
+
+      
        <div class="boton"><%= will_paginate @historial_usos %></div> 
        <div class="boton"><%= link_to 'Volver' , root_path, class: "btn btn-light"  %></div> 
        

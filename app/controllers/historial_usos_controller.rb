@@ -14,7 +14,14 @@ class HistorialUsosController < ApplicationController
 
   # GET /historial_usos or /historial_usos.json
   def index
-    @historial_usos = HistorialUso.paginate(page: params[:page],per_page:5).all
+    if params[:patente]
+      @auto = Auto.where(patente: params[:patente])
+      @historial_usos = HistorialUso.paginate(page: params[:page],per_page:5).where(auto_id: @auto.ids).order(fechaInicio: :desc)
+    end 
+
+    if (params[:patente] == '' || params[:patente] == nil)
+      @historial_usos = HistorialUso.paginate(page: params[:page],per_page:5).all.order(fechaInicio: :desc)
+    end 
   end
 
   # GET /historial_usos/1 or /historial_usos/1.json
