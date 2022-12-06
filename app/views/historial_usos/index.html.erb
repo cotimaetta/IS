@@ -76,9 +76,8 @@
                             <td>$<%= hu.monto %></td>
                   </tr>
             <% end %>
-            <%= will_paginate @historial_usos %>
        </table>  
-
+       <div class="boton"><%= will_paginate @historial_usos %></div> 
        <div class="boton"><%= link_to 'Volver' , root_path, class: "btn btn-light"  %></div> 
        
        
