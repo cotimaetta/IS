@@ -14,7 +14,7 @@ class HistorialUsosController < ApplicationController
 
   # GET /historial_usos or /historial_usos.json
   def index
-    @historial_usos = HistorialUso.all
+    @historial_usos = HistorialUso.paginate(page: params[:page],per_page:5).all
   end
 
   # GET /historial_usos/1 or /historial_usos/1.json

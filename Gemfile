@@ -79,3 +79,5 @@ gem "devise"
 gem "devise-i18n-views"
 
 gem "geokit"
+
+gem "will_paginate"

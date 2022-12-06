@@ -15,6 +15,7 @@
         <% if current_user.admin? %>
             <%= link_to "Autos", autos_path%>
             <%= link_to "Usuarios", usuarios_index_path%>
+            <%= link_to "Historial de aquileres", historial_usos_path%>
         <%end%>
 
         <% if current_user.supervisor? %>
