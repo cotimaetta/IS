@@ -15,11 +15,13 @@
         <% if current_user.admin? %>
             <%= link_to "Autos", autos_path%>
             <%= link_to "Usuarios", usuarios_index_path%>
+            <%= link_to "Historial de aquileres", historial_usos_path%>
         <%end%>
 
         <% if current_user.supervisor? %>
             <%= link_to "Usuarios", supervisors_path%>
             <%= link_to "Autos", autos_path%>
+            <%= link_to "Listado de alquileres", historial_usos_path %>
         <%end%>
 
         <% if current_user.usuario? %>
