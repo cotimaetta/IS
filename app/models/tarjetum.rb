@@ -4,7 +4,7 @@ class Tarjetum < ApplicationRecord
   validates :nombre_titular, :numero, :mes_ven, :anio_ven, :codigo_seguridad, presence: true
   
   #validate :nombre_titular, format: { with: /([A-Z]\s[A-Z])/gm, message: "solo permite letras mayusculas" }
-  validate :letras
+  #validate :letras
   validate :vencimiento
   validate :nummes
 
