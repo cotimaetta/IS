@@ -7,7 +7,7 @@ class Tarjetum < ApplicationRecord
   #validate :letras
   validate :vencimiento
   validate :nummes
-
+  validate :letras 
 
   def nummes
     if (mes_ven.to_i > 12 )
@@ -16,7 +16,8 @@ class Tarjetum < ApplicationRecord
   end
 
   def letras
-    if !(nombre_titular =~ /([A-Z]\s[A-Z])/)
+    valido = nombre_titular =~ /([A-Z]\s[A-Z])/ 
+    if (valido == nil) 
       errors.add(:base ,message:"Nombre titular no es correcto")
     end
   end
