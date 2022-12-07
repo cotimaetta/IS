@@ -42,7 +42,7 @@ class TicketsController < ApplicationController
           @u = User.find(@ticket.user_id)
           @u.saldo = @u.saldo - @ticket.monto
           @u.save
-          format.html { redirect_to ticket_url(@ticket), notice: "La multa se cobro exitosamente" }
+          format.html { redirect_to ticket_url(@ticket), alert: "La multa se cobro exitosamente" }
           format.json { render :show, status: :ok, location: @ticket }
         else
           format.html { render :edit, status: :unprocessable_entity }
