@@ -59,6 +59,13 @@ class MultaController < ApplicationController
     end
   end
 
+  def multar
+    @multum = Multum.new
+    @multum.HistorialUso_id = params[:HU_id]
+    @multum.super_id = params[:super_id]
+    @multum.save
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_multum
@@ -67,6 +74,6 @@ class MultaController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def multum_params
-      params.require(:multum).permit(:descripcion, :fecha, :auto_id, :monto)
+      params.require(:multum).permit(:descripcion, :fecha, :super_id, :HistorialUso_id, :monto)
     end
 end

@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   post "fotousers/modificardos"     => "fotousers#modificardos"
   get "fotousers/modificar"     => "fotousers#modificar"
 
+  get "multum/multar"  =>   "multa#multar"
 
   get "autos/new"           => "autos#new"
   get "autos/index"         => "autos#index"

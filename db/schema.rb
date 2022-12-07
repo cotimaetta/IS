@@ -78,14 +78,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_231938) do
   create_table "multa", force: :cascade do |t|
     t.text "descripcion"
     t.date "fecha"
-    t.integer "auto_id", null: false
     t.integer "super_id", null: false
     t.integer "HistorialUso_id", null: false
     t.float "monto"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["HistorialUso_id"], name: "index_multa_on_HistorialUso_id"
-    t.index ["auto_id"], name: "index_multa_on_auto_id"
     t.index ["super_id"], name: "index_multa_on_super_id"
   end
 
@@ -140,7 +138,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_231938) do
   add_foreign_key "historial_usos", "autos"
   add_foreign_key "historial_usos", "users"
   add_foreign_key "multa", "HistorialUsos"
-  add_foreign_key "multa", "autos"
   add_foreign_key "multa", "users", column: "super_id"
   add_foreign_key "reportes", "autos"
   add_foreign_key "reportes", "users"

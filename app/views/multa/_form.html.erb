@@ -23,11 +23,6 @@
   </div>
 
   <div>
-    <%= form.label :auto_id, style: "display: block" %>
-    <%= form.select :auto_id, options_for_select(Auto.all.map{|s|[s.patente, s.id]}) %>
-  </div>
-
-  <div>
     <%= form.label :monto, style: "display: block" %>
     <%= form.text_field :monto %>
   </div>

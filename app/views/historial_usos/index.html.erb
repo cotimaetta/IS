@@ -76,6 +76,7 @@
                             <td><%= hu.cantHoras %> horas </td>
                             <td><%= hu.horasExtra %></td>
                             <td>$<%= hu.monto %></td>
+                            <td> <%= link_to "MULTAR" , multum_multar_path(HU_id: hu.id, super_id: current_user.id), class: "btn btn-light" %> </td> 
                 </tr>
             <% end %>
         </table>
