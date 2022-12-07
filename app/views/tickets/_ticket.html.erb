@@ -1,16 +1,16 @@
 <div id="<%= dom_id ticket %>">
   <p>
+    <strong>Realizada a:</strong>
+    <%= ticket.user.nombre %> <%= ticket.user.apellido %>
+  </p>
+
+  <p>
     <strong>Descripcion:</strong>
     <%= ticket.descripcion %>
   </p>
 
   <p>
-    <strong>User:</strong>
-    <%= ticket.user_id %>
-  </p>
-
-  <p>
-    <strong>Monto:</strong>
+    <strong>Monto cobrado:</strong>
     <%= ticket.monto %>
   </p>
 

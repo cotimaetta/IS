@@ -25,7 +25,7 @@ class TicketsController < ApplicationController
 
     respond_to do |format|
       if @ticket.save
-        format.html { redirect_to ticket_url(@ticket), notice: "Ticket was successfully created." }
+        format.html { redirect_to ticket_url(@ticket), notice: "La multa se cobro exitosamente" }
         format.json { render :show, status: :created, location: @ticket }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,17 +36,21 @@ class TicketsController < ApplicationController
 
   # PATCH/PUT /tickets/1 or /tickets/1.json
   def update
-    respond_to do |format|
-      if @ticket.update(ticket_params)
-        @u = User.find(@ticket.user_id)
-        @u.saldo = @u.saldo - @ticket.monto
-        @u.save
-        format.html { redirect_to ticket_url(@ticket), notice: "Ticket was successfully updated." }
-        format.json { render :show, status: :ok, location: @ticket }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+    if (ticket_params[:monto] != "") || (ticket_params[:descripcion] != "")
+      respond_to do |format|
+        if @ticket.update(ticket_params)
+          @u = User.find(@ticket.user_id)
+          @u.saldo = @u.saldo - @ticket.monto
+          @u.save
+          format.html { redirect_to ticket_url(@ticket), notice: "La multa se cobro exitosamente" }
+          format.json { render :show, status: :ok, location: @ticket }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @ticket.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to edit_ticket_path, alert: "Complete por favor todos los campos" 
     end
   end
 
