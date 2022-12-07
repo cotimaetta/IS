@@ -1,14 +1,76 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validacion usurios</title>
+    <link rel="stylesheet" href="../../assests/stylesheets/aplication.css">
+</head>
+<style>
+    .parent {
+      display: flex;
+      justify-content: space-between;
+      width:50%;
+      padding:20px;
+    }
+    .child {
+      flex: 20%
+    }
+    li{
+      text-align: left;
+      padding:5px;
+    }
+    
+</style>
+<body>
+    
+    <% if user_signed_in? %>
+        
+        <% if current_user.supervisor? %>
+            <h2> Reportes </h2>
+            <div class="parent">
+                <div class="child">
+                    <h3> Accidente </h3>
+                    <% @accidente.each do |u| %>
+                        <ul><li>
+                          Usuario: <%= u.user.nombre %>  <%= u.user.apellido %></br>
+                          Auto: <%= u.auto.patente %></br>
+                          Fecha: <%= u.fecha %></br>
+                          Descripcion: <%= u.descripcion %></br>
+                        </li></ul>
+                    <% end %>
+                </div>
+            
+                <div class="child">
+                    <b><h3> Daño grave </h3></b>
+                    <% @graves.each do |u| %>
+                      <ul><li>
+                        Usuario: <%= u.user.nombre %>  <%= u.user.apellido %></br>
+                        Auto: <%= u.auto.patente %></br>
+                        Fecha: <%= u.fecha %></br>
+                        Descripcion: <%= u.descripcion %></br>
+                      </li></ul>
+                    <% end %>
+                </div>  
 
-<h1>Reportes</h1>
+                <div class="child">
+                    <h3> Daño leve </h3>
+                    <% @leves.each do |u| %>
+                      <ul><li>
+                        Usuario: <%= u.user.nombre %>  <%= u.user.apellido %></br>
+                        Auto: <%= u.auto.patente %></br>
+                        Fecha: <%= u.fecha %></br>
+                        Descripcion: <%= u.descripcion %></br>
+                      </li></ul>
+                    <% end %>
+                </div>       
+            </div>
 
-<div id="reportes">
-  <% @reportes.each do |reporte| %>
-    <%= render reporte %>
-    <p>
-      <%= link_to "Show this reporte", reporte %>
-    </p>
-  <% end %>
-</div>
+        <% end %>
+        <%= link_to 'Volver' , root_path%>
+    <% else %>
+        <h1>AlquilApp </h1>
+    <% end %>
 
-<%= link_to "New reporte", new_reporte_path %>
+</body>
