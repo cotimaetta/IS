@@ -41,20 +41,24 @@ class TarjetaController < ApplicationController
 
   # PATCH/PUT /tarjeta/1 or /tarjeta/1.json
   def update
-    respond_to do |format|
-      if @tarjetum.update(tarjetum_params)
-        @user = User.find(@tarjetum.user_id)
-        @user.saldo = @user.saldo + @tarjetum.carga
-        @user.save
-        @tarjetum.monto = @tarjetum.monto - @tarjetum.carga
-        @tarjetum.save
-        format.html { redirect_to root_path, notice: "Tarjetum was successfully updated." }
-        format.json { render :show, status: :ok, location: @tarjetum }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @tarjetum.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @tarjetum.update(tarjetum_params)
+          @user = User.find(@tarjetum.user_id)
+          if @tarjetum.carga == nil
+            @tarjetum.carga = 0
+            @tarjetum.save
+          end
+          @user.saldo = @user.saldo + @tarjetum.carga
+          @user.save
+          @tarjetum.monto = @tarjetum.monto - @tarjetum.carga
+          @tarjetum.save
+          format.html { redirect_to root_path, notice: "La transacción ha sido finalizada con éxito." }
+          format.json { render :show, status: :ok, location: @tarjetum }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @tarjetum.errors, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   def cargarSaldo

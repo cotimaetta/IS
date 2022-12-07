@@ -14,10 +14,10 @@
 
   <div>
     <%= form.label :carga, style: "display: block" %>
-    <%= form.number_field :carga, in:1..max%>
+    <%= form.number_field :carga, in:0..max%>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Cargar"%>
   </div>
 <% end %>
