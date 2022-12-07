@@ -3,11 +3,9 @@
 one:
   descripcion: MyText
   user: one
-  historial_uso: one
   monto: 1.5
 
 two:
   descripcion: MyText
   user: two
-  historial_uso: two
   monto: 1.5
