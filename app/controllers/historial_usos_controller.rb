@@ -16,11 +16,11 @@ class HistorialUsosController < ApplicationController
   def index
     if params[:patente]
       @auto = Auto.where(patente: params[:patente])
-      @historial_usos = HistorialUso.paginate(page: params[:page],per_page:5).where(auto_id: @auto.ids).order(fechaInicio: :desc)
+      @historial_usos = HistorialUso.paginate(page: params[:page],per_page:10).where(auto_id: @auto.ids).order(fechaInicio: :desc)
     end 
 
     if (params[:patente] == '' || params[:patente] == nil)
-      @historial_usos = HistorialUso.paginate(page: params[:page],per_page:5).all.order(fechaInicio: :desc)
+      @historial_usos = HistorialUso.paginate(page: params[:page],per_page:10).all.order(fechaInicio: :desc)
     end 
   end
 

@@ -21,13 +21,14 @@
         font-family: 'Roboto', sans-serif;
         font-size: 20px;
     }
-    .content{
+
+    .buscador{
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 25px;
+        padding: 10px;
     }
 
     
@@ -36,11 +37,32 @@
     }
 
     th, td {
-        width: 200px;
+        width: 900px;
         word-wrap: break-word;
     }
-   
-    
+    .tw-btn{
+    color: #CCC;
+    background-color: white;
+    width: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.tw-btn picture{
+    width: 35px;
+    height: 35px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tw-btn picture img{
+    width: 50%;
+}
+
+.tw-btn:hover{
+    background-color: #ddd;
+}
+ 
 </style>
 
 <body>
@@ -50,35 +72,51 @@
 <% if user_signed_in? %>
 
 <div class="container mt-3">
-        <div class="d-flex justify-content-end p-2 point-form">
+        <div class="buscador">
+            <h6> Buscar por numero de patente: </h6>
             <%= form_tag historial_usos_path , method: :get do %>
             <%= text_field_tag :patente, params[:patente] %>
-            <%= submit_tag "Buscar", patente: nil %>
+
+            <%= button_tag(type: "submit", patente: nil, class: "tw-btn") do %>
+                <picture>
+                    <img src="data:image/png;base64,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" alt="logo">
+                </picture>
+            <% end %>
             <% end %>
         </div>
-        <table>
-                <tr>
-                    <th> Patente del Auto </th>
-                    <th> Modelo </th>
-                    <th> Usuario </th>
-                    <th> Fecha de alquiler </th>
-                    <th> Cantidad de Horas </th>
-                    <th>  Horas extras</th>
-                    <th>Monto </th>
-                </tr>   
 
-            <% @historial_usos.each do |hu| %>
-                <<tr>
-                            <td><%= hu.auto.patente %></td>
-                            <td><%= hu.auto.modelo %></td>
-                            <td><%= hu.user.nombre %></td>
-                            <td><%= hu.fechaInicio.day %>/<%= hu.fechaInicio.month %>/<%= hu.fechaInicio.year %> <%= hu.fechaInicio.hour %>:<%= hu.fechaInicio.min %></td>
-                            <td><%= hu.cantHoras %> horas </td>
-                            <td><%= hu.horasExtra %></td>
-                            <td>$<%= hu.monto %></td>
-                </tr>
-            <% end %>
-        </table>
+        <% if @historial_usos.count == 0 %>
+                <p> La patente ingresada no existe, intente nuevamente..</p>
+        <% else %>
+            <table>
+                    <tr>
+                        <th> Fecha de alquiler </th>
+                        <th> Hora </th>
+                        <th> Patente</th>
+                        <th> Marca </th>
+                        <th> Modelo </th>
+                        <th> Usuario </th>
+                        <th> Duracion </th>
+                        <th>  Horas extras</th>
+                        <th>Monto </th>
+                    </tr>   
+            
+                    <% @historial_usos.each do |hu| %>
+                        
+                        <tr>
+                                    <td><%= hu.fechaInicio.day %>/<%= hu.fechaInicio.month %>/<%= hu.fechaInicio.year %></td>
+                                    <td><%= hu.fechaInicio.hour %>:<%= hu.fechaInicio.min %></td>
+                                    <td><%= hu.auto.patente %></td>
+                                    <td><%= hu.auto.marca %></td>
+                                    <td><%= hu.auto.modelo %></td>
+                                    <td><%= hu.user.nombre %> <%= hu.user.apellido %></td>
+                                    <td><%= hu.cantHoras %> horas </td>
+                                    <td><%= hu.horasExtra %></td>
+                                    <td>$<%= hu.monto %></td>
+                        </tr>
+                    <% end %>
+            </table>
+        <% end %>
 </div>
  
 
@@ -87,7 +125,7 @@
 
       
        <div class="boton"><%= will_paginate @historial_usos %></div> 
-       <div class="boton"><%= link_to 'Volver' , root_path, class: "btn btn-light"  %></div> 
+       <div class="buscador"><%= link_to 'Volver' , root_path, class: "btn btn-light"  %></div> 
        
        
 
