@@ -3,7 +3,23 @@ class Tarjetum < ApplicationRecord
 
   validates :nombre_titular, :numero, :mes_ven, :anio_ven, :codigo_seguridad, presence: true
   
+  #validate :nombre_titular, format: { with: /([A-Z]\s[A-Z])/gm, message: "solo permite letras mayusculas" }
+  validate :letras
   validate :vencimiento
+  validate :nummes
+
+
+  def nummes
+    if (mes_ven.to_i > 12 )
+      errors.add(:base ,message:"Mes incorrecto")
+    end 
+  end
+
+  def letras
+    if !(nombre_titular =~ /([A-Z]\s[A-Z])/)
+      errors.add(:base ,message:"Nombre titular no es correcto")
+    end
+  end
 
   def vencimiento
     a = "20" << anio_ven.to_s
