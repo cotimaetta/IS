@@ -1,17 +1,26 @@
 class Tarjetum < ApplicationRecord
   belongs_to :user
 
-  validates :nombre_titular, :numero, :fecha_ven, :contras , presence:true
-  validates :numero, length: { is: 16 }
-  validates :contras, numericality: { only_integer: true },  length: { is: 3 }
+  validates :nombre_titular, :numero, :mes_ven, :anio_ven, :codigo_seguridad, presence: true
+  
   validate :vencimiento
 
-
   def vencimiento
-      if fecha_ven != nil
-        if Date.today > fecha_ven
-          errors.add(:base ,message:"No podes tener la tarjeta vencida")
-        end
+    a = "20" << anio_ven.to_s
+    if (anio_ven != nil) && (a.to_i < Date.today.year.to_i)
+      puts a
+      errors.add(:base ,message:"No puede asociar tarjeta ya que está vencida")
+    else 
+      if a == Date.today.year.to_s
+        if (mes_ven != nil) && (mes_ven.to_i < Date.today.month.to_i)
+          puts a
+          errors.add(:base ,message:"No puede asociar tarjeta ya que está vencida")
+        end 
       end
+    end
+
   end
+
+
+  
 end

@@ -24,7 +24,7 @@ class TarjetaController < ApplicationController
     @tarjetum = Tarjetum.new(tarjetum_params)
     @tarjetum.user_id = current_user.id
     @tarjetum.monto = 20000
-    if @tarjetum.numero == 1234222212342222
+    if @tarjetum.numero == '1234222212342222'
       redirect_to new_tarjetum_path,alert:"Tarjeta invalida. Ingrese los datos nuevamente"
     else
       respond_to do |format|
@@ -70,6 +70,6 @@ class TarjetaController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tarjetum_params
-      params.require(:tarjetum).permit(:numero, :fecha_ven, :nombre_titular, :contras, :monto, :user_id)
+      params.require(:tarjetum).permit(:numero, :mes_ven, :anio_ven, :nombre_titular, :codigo_seguridad, :monto, :user_id)
     end
 end
