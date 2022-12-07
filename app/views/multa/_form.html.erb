@@ -1,4 +1,4 @@
-<%= form_with(model: multum) do |form| %>
+<%= form_with(model: @multa) do |form| %>
   <% if multum.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(multum.errors.count, "error") %> prohibited this multum from being saved:</h2>
@@ -16,10 +16,19 @@
     <%= form.text_area :descripcion %>
   </div>
 
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
 
   <div>
-    <%= form.label :fecha, style: "display: block" %>
-    <%= form.datetime_field :fecha %>
+    <%= form.label :historialuso, style: "display: block" %>
+    <%= form.text_field :historialuso %>
+  </div>
+
+  <div>
+    <%= form.label :references, style: "display: block" %>
+    <%= form.text_field :references %>
   </div>
 
   <div>

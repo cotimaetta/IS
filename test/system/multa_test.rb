@@ -10,38 +10,40 @@ class MultaTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Multa"
   end
 
-  test "should create multum" do
+  test "should create multa" do
     visit multa_url
-    click_on "New multum"
+    click_on "New multa"
 
-    fill_in "Auto", with: @multum.auto_id
     fill_in "Descripcion", with: @multum.descripcion
-    fill_in "Fecha", with: @multum.fecha
+    fill_in "Historialuso", with: @multum.historialuso
     fill_in "Monto", with: @multum.monto
-    click_on "Create Multum"
+    fill_in "References", with: @multum.references
+    fill_in "User", with: @multum.user_id
+    click_on "Create Multa"
 
-    assert_text "Multum was successfully created"
+    assert_text "Multa was successfully created"
     click_on "Back"
   end
 
-  test "should update Multum" do
+  test "should update Multa" do
     visit multum_url(@multum)
-    click_on "Edit this multum", match: :first
+    click_on "Edit this multa", match: :first
 
-    fill_in "Auto", with: @multum.auto_id
     fill_in "Descripcion", with: @multum.descripcion
-    fill_in "Fecha", with: @multum.fecha
+    fill_in "Historialuso", with: @multum.historialuso
     fill_in "Monto", with: @multum.monto
-    click_on "Update Multum"
+    fill_in "References", with: @multum.references
+    fill_in "User", with: @multum.user_id
+    click_on "Update Multa"
 
-    assert_text "Multum was successfully updated"
+    assert_text "Multa was successfully updated"
     click_on "Back"
   end
 
-  test "should destroy Multum" do
+  test "should destroy Multa" do
     visit multum_url(@multum)
-    click_on "Destroy this multum", match: :first
+    click_on "Destroy this multa", match: :first
 
-    assert_text "Multum was successfully destroyed"
+    assert_text "Multa was successfully destroyed"
   end
 end

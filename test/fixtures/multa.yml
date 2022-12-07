@@ -2,12 +2,14 @@
 
 one:
   descripcion: MyText
-  fecha: 2022-12-05 19:53:15
-  auto: one
+  user: one
+  historialuso: MyString
+  references: MyString
   monto: 1.5
 
 two:
   descripcion: MyText
-  fecha: 2022-12-05 19:53:15
-  auto: two
+  user: two
+  historialuso: MyString
+  references: MyString
   monto: 1.5

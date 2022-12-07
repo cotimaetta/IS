@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tickets
+  get 'multa/multar'
   resources :tarjeta
   resources :multa
 
@@ -54,7 +56,7 @@ Rails.application.routes.draw do
   post "fotousers/modificardos"     => "fotousers#modificardos"
   get "fotousers/modificar"     => "fotousers#modificar"
 
-  get "multum/multar"  =>   "multa#multar"
+  get "multa/multar"  =>   "multa#multar"
 
   get "autos/new"           => "autos#new"
   get "autos/index"         => "autos#index"
