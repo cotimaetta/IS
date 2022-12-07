@@ -13,12 +13,12 @@
 
   <div>
     <%= form.label :numero_de_tarjeta, style: "display: block" %>
-    <%= form.number_field :numero %>
+    <%= form.text_field :numero, maxlength: 16 %>
   </div>
 
   <div>
-    <%= form.label :fecha_ven, style: "display: block" %>
-    <%= form.date_field :fecha_ven %>
+    <%= form.label :fecha_vencimiento, style: "display: block" %>
+    <%= form.text_field :mes_ven, maxlength: 2%> / <%= form.text_field :anio_ven, maxlength: 2 %>
   </div>
 
   <div>
@@ -27,8 +27,8 @@
   </div>
 
   <div>
-    <%= form.label :contraseña, style: "display: block" %>
-    <%= form.password_field :contras, maxlength:3 %>
+    <%= form.label :codigo_seguridad, style: "display: block" %>
+    <%= form.text_field :codigo_seguridad, maxlength: 2%>
   </div>
 
   <div>
