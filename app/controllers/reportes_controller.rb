@@ -4,6 +4,9 @@ class ReportesController < ApplicationController
   # GET /reportes or /reportes.json
   def index
     @reportes = Reporte.all
+    @graves = Reporte.where(tipo: 1).order(fecha: :desc)
+    @leves = Reporte.where(tipo: 2).order(fecha: :desc)
+    @accidente = Reporte.where(tipo: 0).order(fecha: :desc)
   end
 
   # GET /reportes/1 or /reportes/1.json
@@ -28,7 +31,7 @@ class ReportesController < ApplicationController
 
     respond_to do |format|
       if @reporte.save
-        format.html { redirect_to autos_mientrasalquiler_path(:id => @reporte.auto_id), notice: "Reporte was successfully created." }
+        format.html { redirect_to autos_mientrasalquiler_path(:id => @reporte.auto_id), notice: "Reporte enviado." }
         format.json { render :show, status: :created, location: @reporte }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -43,14 +46,18 @@ class ReportesController < ApplicationController
     @reporte.auto_id = HistorialUso.where(user_id: @reporte.user_id).last.auto_id
     @reporte.fecha = DateTime.now
 
-    respond_to do |format|
-      if @reporte.save
-        format.html { redirect_to autos_mientrasalquiler_path(:id => @reporte.auto_id), notice: "Reporte was successfully created." }
-        format.json { render :show, status: :created, location: @reporte }
-      else
-        format.html { render :pre, status: :unprocessable_entity }
-        format.json { render json: @reporte.errors, status: :unprocessable_entity }
-      end
+    if (@reporte.descripcion == nil) || (@reporte.descripcion == "")
+        redirect_to reportes_pre_path(), alert: "Si vas a generar un reporte, debes detallarlo"
+    else
+        respond_to do |format|
+          if @reporte.save
+            format.html { redirect_to autos_mientrasalquiler_path(:id => @reporte.auto_id), notice: "Reporte enviado." }
+            format.json { render :show, status: :created, location: @reporte }
+          else
+            format.html { render :pre, status: :unprocessable_entity }
+            format.json { render json: @reporte.errors, status: :unprocessable_entity }
+          end
+        end
     end
   end
 
@@ -64,7 +71,7 @@ class ReportesController < ApplicationController
   def update
     respond_to do |format|
       if @reporte.update(reporte_params)
-        format.html { redirect_to reporte_url(@reporte), notice: "Reporte was successfully updated." }
+        format.html { redirect_to reporte_url(@reporte), notice: "Reporte enviado." }
         format.json { render :show, status: :ok, location: @reporte }
       else
         format.html { render :edit, status: :unprocessable_entity }

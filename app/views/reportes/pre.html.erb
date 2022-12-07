@@ -3,7 +3,7 @@
 <%= render "pre", reporte: @reporte %>
 
 <br>
-
+<% @hu = HistorialUso.last %>
 <div>
-  <%= link_to "Back to reportes", reportes_path %>
+  <%= link_to "Omitir", autos_mientrasalquiler_path(:id => @hu.auto_id) %>
 </div>
