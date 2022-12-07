@@ -13,7 +13,7 @@ class Tarjetum < ApplicationRecord
     if (mes_ven.to_i > 12 )
       errors.add(:base ,message:"Mes incorrecto")
     end 
-  end
+  end  
 
   def letras
     valido = nombre_titular =~ /([A-Z]\s[A-Z])/ 
