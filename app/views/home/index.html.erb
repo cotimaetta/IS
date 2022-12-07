@@ -63,7 +63,7 @@
                         <% if Tarjetum.where(user_id: current_user.id).count == 0 %>
                             <%= link_to "Asociar Tarjeta", new_tarjetum_path%>
                         <% else %>
-                            <%= link_to "Cargar saldo" %>
+                            <%= link_to "Cargar saldo", tarjeta_cargarSaldo_path(:user_id => current_user.id), class: "btn btn-light" %>
                             <p> Saldo: <%= current_user.saldo %> </p>
                             <% if current_user.saldo >= 0  %>
                                 <%= link_to "listado de autos para alquilar", autos_path%>

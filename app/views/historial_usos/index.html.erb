@@ -113,7 +113,7 @@
                                     <td><%= hu.cantHoras %> horas </td>
                                     <td><%= hu.horasExtra %></td>
                                     <td>$<%= hu.monto %></td>
-                            <td> <%= link_to "MULTAR" , new_ticket_path, class: "btn btn-light" %> </td> 
+                            <td> <%= link_to "MULTAR" , tickets_multar_path(:user_id => hu.user_id), class: "btn btn-light" %> </td> 
                         </tr>
                     <% end %>
             </table>

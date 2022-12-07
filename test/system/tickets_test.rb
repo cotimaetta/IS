@@ -15,7 +15,6 @@ class TicketsTest < ApplicationSystemTestCase
     click_on "New ticket"
 
     fill_in "Descripcion", with: @ticket.descripcion
-    fill_in "Historial uso", with: @ticket.historial_uso_id
     fill_in "Monto", with: @ticket.monto
     fill_in "User", with: @ticket.user_id
     click_on "Create Ticket"
@@ -29,7 +28,6 @@ class TicketsTest < ApplicationSystemTestCase
     click_on "Edit this ticket", match: :first
 
     fill_in "Descripcion", with: @ticket.descripcion
-    fill_in "Historial uso", with: @ticket.historial_uso_id
     fill_in "Monto", with: @ticket.monto
     fill_in "User", with: @ticket.user_id
     click_on "Update Ticket"

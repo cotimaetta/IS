@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  get 'tickets/multar'
   resources :tickets
-  get 'multa/multar'
+  get 'tarjeta/cargarSaldo'
   resources :tarjeta
-  resources :multa
 
   get 'reportes/pre'
   post 'reportes/generarpre'

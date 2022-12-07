@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_07_062753) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_07_073653) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -108,17 +108,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_07_062753) do
     t.string "mes_ven"
     t.string "anio_ven"
     t.string "codigo_seguridad"
+    t.float "carga"
     t.index ["user_id"], name: "index_tarjeta_on_user_id"
   end
 
   create_table "tickets", force: :cascade do |t|
     t.text "descripcion"
     t.integer "user_id", null: false
-    t.integer "historial_uso_id", null: false
     t.float "monto"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["historial_uso_id"], name: "index_tickets_on_historial_uso_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
@@ -151,6 +150,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_07_062753) do
   add_foreign_key "reportes", "autos"
   add_foreign_key "reportes", "users"
   add_foreign_key "tarjeta", "users"
-  add_foreign_key "tickets", "historial_usos"
   add_foreign_key "tickets", "users"
 end

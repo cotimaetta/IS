@@ -43,13 +43,24 @@ class TarjetaController < ApplicationController
   def update
     respond_to do |format|
       if @tarjetum.update(tarjetum_params)
-        format.html { redirect_to tarjetum_url(@tarjetum), notice: "Tarjetum was successfully updated." }
+        @user = User.find(@tarjetum.user_id)
+        @user.saldo = @user.saldo + @tarjetum.carga
+        @user.save
+        @tarjetum.monto = @tarjetum.monto - @tarjetum.carga
+        @tarjetum.save
+        format.html { redirect_to root_path, notice: "Tarjetum was successfully updated." }
         format.json { render :show, status: :ok, location: @tarjetum }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @tarjetum.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def cargarSaldo
+    @tarjeta = Tarjetum.where(user_id: params[:user_id]).last
+    
+    redirect_to edit_tarjetum_path(@tarjeta)
   end
 
   # DELETE /tarjeta/1 or /tarjeta/1.json
@@ -70,6 +81,6 @@ class TarjetaController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tarjetum_params
-      params.require(:tarjetum).permit(:numero, :mes_ven, :anio_ven, :nombre_titular, :codigo_seguridad, :monto, :user_id)
+      params.require(:tarjetum).permit(:numero, :carga, :mes_ven, :anio_ven, :nombre_titular, :codigo_seguridad, :monto, :user_id)
     end
 end

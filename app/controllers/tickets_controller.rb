@@ -38,6 +38,9 @@ class TicketsController < ApplicationController
   def update
     respond_to do |format|
       if @ticket.update(ticket_params)
+        @u = User.find(@ticket.user_id)
+        @u.saldo = @u.saldo - @ticket.monto
+        @u.save
         format.html { redirect_to ticket_url(@ticket), notice: "Ticket was successfully updated." }
         format.json { render :show, status: :ok, location: @ticket }
       else
@@ -57,6 +60,13 @@ class TicketsController < ApplicationController
     end
   end
 
+  def multar
+    @ticket = Ticket.new()
+    @ticket.user_id  = params[:user_id]
+    @ticket.save
+    redirect_to edit_ticket_path(@ticket)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket
@@ -65,6 +75,6 @@ class TicketsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ticket_params
-      params.require(:ticket).permit(:descripcion, :user_id, :historial_uso_id, :monto)
+      params.require(:ticket).permit(:descripcion, :user_id, :monto)
     end
 end
